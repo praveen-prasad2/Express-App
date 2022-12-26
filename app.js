@@ -2,10 +2,10 @@ const express = require("express")
 const app = express()
 
 app.use(express.urlencoded({extended:false
-
-
-
 }))
+
+app.use(express.json())
+
 const path = require("path")
 app.get("/", (req, res) => {
    res.send("request working")
@@ -26,6 +26,17 @@ app.get("/home", (req, res) => {
       res.send(a+p)
 
       
+   })
+
+   app.get("/api/getdata",(req,res)=>{
+      res.json({name:"Praveen"})
+   })
+
+   app.post("/api/adddata",(req,res)=>{
+    console.log(req.body.name)
+      console.log( req.body.dept)
+      res.json({success:true,
+      msg:"Hai"+  req.body.name})
    })
 
 
